@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  padding-top: 120px;
+  background-color: #F5F5F5;
+}
+
+p {
+  text-indent: 45px; /* Отступ первой строки в пикселах */
+}
+
+.textapp {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#spinnerball {
+  z-index: 3;
+  position: absolute;
+  top: 47%;
+  left: 48.3%;
+  background-color: rgba(0,0,0,0);
+  border: 5px solid rgba(70, 229, 61, 0.9);
+  opacity: .9;
+  border-top: 5px solid rgba(0,0,0,0);
+  border-left: 5px solid rgba(0,0,0,0);
+  border-radius: 50px;
+  box-shadow: 0 0 35px #2187e7;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  -moz-animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
+}
+
+.no_display {
+  display: none;
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}

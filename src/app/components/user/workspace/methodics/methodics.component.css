@@ -1,0 +1,13 @@
+* {
+  background: #F5F5F5;
+  font-family: 'Playfair Display', serif;
+  color: #1D2731;
+
+}
+.header-methodics {
+  font-size: large;
+  font-weight: bold;
+}
+.list-methodics {
+  margin-top: 10px;
+}

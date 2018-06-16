@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark bg-dark fixed-top boxshadow">
+  <div class="container">
+    <span id="brandName" class="text-white a"><b>ВИРТУАЛЬНАЯ ПСИХОДИАГНОСТИЧЕСКАЯ ЛАБОРАТОРИЯ</b></span>
+  </div>
+  <div class="container navmenu">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary" routerLink='editpage'><i class="fa fa-pencil"></i> РЕДАКТИРОВАНИЕ ИНФОРМАЦИИ </button>
+      <button type="button" class="btn btn-primary" routerLink='methodics'><i class="fa fa-book"></i> МЕТОДИКИ </button>
+      <button type="button" class="btn btn-primary" routerLink='usermonitoring'><i class="fa fa-user"></i> ПОЛЬЗОВАТЕЛИ </button>
+      <button type="button" class="btn btn-primary"><i class="fa fa-bar-chart"></i> СТАТИСТИКА </button>
+    </div>
+      <a type="button" class="btn btn-primary" href="/" (click)="logoutClick()"><i class="fa fa-power-off"></i> ВЫЙТИ </a>
+  </div>
+</nav>
+<router-outlet></router-outlet>

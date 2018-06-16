@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="alert alert-warning" role="alert" *ngIf="errorMessage">
+    <strong>Warning!</strong> {{errorMessage}}}
+  </div>
+  <span class="header-methodics">Список доступных методик: </span>
+  <div class="list-group list-methodics">
+    <a routerLink="startMethodics/{{methodics.id}}" *ngFor="let methodics of openMethodics; let i = index"  class="list-group-item">
+      {{i+1}}. {{ methodics.name }}
+    </a>
+  </div>
+</div>

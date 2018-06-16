@@ -1,0 +1,45 @@
+<div *ngIf="methodicsStarting">
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">{{methodicsStarting.name}}</h1>
+    <p class="lead">{{methodicsStarting.description}}</p>
+  </div>
+  <div *ngFor="let question of methodicsStarting.questions">
+    <div class="list-group-item">
+      <div class="row">
+      <div class="col-md-8 display-5">{{question.number}}) {{question.text}}</div>
+      <div class="custom-control custom-radio custom-control-inline" *ngFor="let value of answerValues" id="radioList{{question.id}}{{value}}">
+        <input class="custom-control-input" (click)="selectValue(question, value)" [checked]="question.resultValue === value" type="radio" name="inlineRadioOptions{{question.id}}" id="inlineRadio{{question.id}}{{value}}">
+        <label class="custom-control-label" for="inlineRadio{{question.id}}{{value}}">{{value}}</label>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix">
+    <div>
+      <button type="button" class="btn btn-success float-right" (click)="sendMethodics()" >Отправить выполненный тест</button>
+      <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-secondary float-right">Отменить выполнение</button>
+      <label *ngIf="errorMessage" class="alert alert-danger float-left" role="alert">{{errorMessage}}</label>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title display-6" id="exampleModalLabel">Вы уверены, что хотите отменить прохождение методики?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body display-7">
+        Все данные о прохождении будут утеряны.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="navigateToListMethodics()">Да</button>
+      </div>
+    </div>
+  </div>
+</div>

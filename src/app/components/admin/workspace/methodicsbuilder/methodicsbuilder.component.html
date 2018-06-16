@@ -1,0 +1,101 @@
+<h1 class="text-center textapp">Создание методики</h1>
+<div class="container">
+ <div>
+   <div class="content py-5  bg-light">
+     <div class="container">
+       <div class="row">
+         <div class="col-md-8 offset-md-2">
+           <span class="anchor" id="formUserEdit"></span>
+
+
+           <div class="card card-outline-secondary">
+             <div class="card-header">
+               <h3 class="mb-0">1. Блок описания методики</h3>
+             </div>
+             <div class="card-body">
+               <form class="form" role="form" autocomplete="off">
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Название методики</label>
+                   <div class="col-lg-9">
+                     <input class="form-control" type="text" placeholder="введите название" [(ngModel)]="methodics.name" [ngModelOptions]="{standalone: true}"/>
+                   </div>
+                 </div>
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Описание методики</label>
+                   <div class="col-lg-9">
+                     <textarea class="form-control" type="text" placeholder="Описание методики и её шкалы оценивания" [(ngModel)]="methodics.description" [ngModelOptions]="{standalone: true}"></textarea>
+                   </div>
+                 </div>
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Левая и правая граница ответов</label>
+                   <span></span>
+                   <input type="range" min="1" max="100" />
+                 </div>
+               </form>
+             </div>
+           </div>
+
+
+           <div class="card card-outline-secondary">
+             <div class="card-header">
+               <h3 class="mb-0">2. Блок создания вопросов</h3>
+             </div>
+             <div class="card-body">
+               <form class="form" role="form" autocomplete="off">
+                 <div class="form-group row" *ngFor="let question of methodics.questionsDtos; let i = index">
+                   <label class="col-lg-1 col-form-label form-control-label text-center">{{i+1}}</label>
+                   <div class="col-lg-9">
+                      <input  class="form-control" [(ngModel)]="question.text" [ngModelOptions]="{standalone: true}">
+                   </div>
+                   <div class="col-lg-1">
+                     <label class="btn btn-sm btn-danger float-right" (click)="deleteQuestion(question)"><i class="fa fa-trash"></i></label>
+                   </div>
+                 </div>
+                 <div class="form-group row align-right">
+                   <div class="col-lg-12">
+                     <button type="button" class="btn btn-primary btn-block" (click)="createQuestion(methodics.questionsDtos.length + 1)"><i class="fa fa-plus-circle"></i> Добавить вопрос</button>
+                   </div>
+                 </div>
+               </form>
+             </div>
+           </div>
+
+           <div class="card card-outline-secondary">
+             <div class="card-header">
+               <h3 class="mb-0">3. Блок описания ключей</h3>
+             </div>
+             <div class="card-body">
+               <form class="form" role="form" autocomplete="off">
+                 <div class="form-group row" *ngFor="let key of methodics.methodicsKeyDtoList; let i = index">
+                   <label class="col-lg-1 col-form-label form-control-label text-center">{{i+1}}</label>
+                   <div class="col-lg-9">
+                     <input  class="form-control" [(ngModel)]="key.nameScale" [ngModelOptions]="{standalone: true}">
+                   </div>
+                   <div class="col-lg-1">
+                     <label class="btn btn-sm btn-danger float-right" (click)="deleteKey(key)"><i class="fa fa-trash"></i></label>
+                   </div>
+                 </div>
+                 <div class="form-group row align-right">
+                   <div class="col-lg-12">
+                     <button type="button" class="btn btn-primary btn-block" (click)="createKey()"><i class="fa fa-plus-circle"></i> Добавить ключ</button>
+                   </div>
+                 </div>
+               </form>
+             </div>
+           </div>
+           <div class="form-group row float-right">
+             <div class="col-lg-4">
+               <input type="reset" class="btn btn-secondary" value="Cancel">
+             </div>
+             <div class="col-lg-3">
+               <input type="button" class="btn btn-primary" value="Save Changes">
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+

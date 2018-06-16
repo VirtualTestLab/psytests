@@ -1,0 +1,97 @@
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Редактировать документы
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <div class="jumbotron textapp">
+          <div class="container">
+            <button class="btn btn-bg btn-success m-1-auto" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Добавить документ</button>
+            <table class="table table-inverse">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th class="text-center">Описание документа</th>
+                <th class="text-center">Документ</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let file of files; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td class="text-center">{{file.description}}</td>
+                <td class="text-center"><a href='{{file.downloadUrl}}' download='{{file.name}}'><i class="fa fa-file-{{file.expansion}}-o"></i> {{file.name}}</a></td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-secondary"><i class="fa fa-pencil-square-o"></i> </button>
+                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Редактировать информацию о контактах
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        <div class="jumbotron textapp">
+          <div class="container">
+            <button class="btn btn-bg btn-success m-1-auto" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Добавить контакт</button>
+            <table class="table table-inverse">
+              <thead>
+              <tr>
+                <th class="text-center">Тип контакта</th>
+                <th class="text-center">Контактная информация</th>
+                <th class="text-center">Компетенции</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="text-center">Городской номер телефона</td>
+                <td class="text-center">+375 152 738040</td>
+                <td class="text-center">Предоставление подробной ифнормации о пройденной методике</td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-secondary"><i class="fa fa-pencil-square-o"></i> </button>
+                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">e-mail</td>
+                <td class="text-center">virtualtestlab@gmail.com</td>
+                <td class="text-center">Предоставление подробной ифнормации о пройденной методике</td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-secondary"><i class="fa fa-pencil-square-o"></i> </button>
+                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">Городской номер телефона</td>
+                <td class="text-center">+375 152 73 93 01 Bird</td>
+                <td class="text-center">Принятие предложений, уточнение ифнормации</td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-secondary"><i class="fa fa-pencil-square-o"></i> </button>
+                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

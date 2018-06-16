@@ -1,0 +1,28 @@
+* {
+  background: #F5F5F5;
+  font-family: 'Playfair Display', serif;
+  color: #1D2731;
+}
+.tag {
+  border-radius: 3px;
+  padding: 5px;
+  margin: auto;
+}
+p {
+  line-height: 2;
+}
+.thank {
+  font-size: 24px;
+  font-style: italic;
+}
+.button-group-text{
+  color: #1D2731;
+  background: #F57D27;
+}
+.container{
+  background: #328CC1;
+}
+h1{
+  margin-top: -35px;
+}
+

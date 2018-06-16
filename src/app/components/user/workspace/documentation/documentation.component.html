@@ -1,0 +1,20 @@
+<div class="jumbotron textapp">
+  <div class="container">
+    <table class="table table-inverse">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th class="text-center">Описание документа</th>
+        <th class="text-center">Документ</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let file of files; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td class="text-center">{{file.description}}</td>
+        <td class="text-center"><a href='{{file.downloadUrl}}' download='{{file.name}}'><i class="fa fa-file-{{file.expansion}}-o"></i> {{file.name}}</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

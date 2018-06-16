@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <h3 class="header-methodics">Список методик: </h3>
+  <div class="list-group list-methodics">
+    <button routerLink='builder' class="btn btn-bg btn-success float-right"><i class="fa fa-plus-circle"></i> Добавить методику</button>
+    <span *ngFor="let methodics of allMethodics; let i = index"  class="list-group-item">
+      <span style="margin-left: 20px">{{i+1}}. {{ methodics.name }}</span>
+      <button class="btn btn-sm btn-danger float-right"><i class="fa fa-trash"></i> </button>
+      <button class="btn btn-sm btn-secondary float-right"><i class="fa fa-pencil-square-o"></i> </button>
+    </span>
+  </div>
+</div>

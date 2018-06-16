@@ -1,0 +1,29 @@
+
+.navmenu {
+  font-family: 'Playfair Display', serif;
+  padding: 10px;
+  min-width: 100%;
+  border-radius: 3px;
+  background-color: #F5F5F5;
+  box-shadow: 1px 0px 100px 0px #328CC1;
+}
+
+.boxshadow {
+  box-shadow: 3px 0px 10px 0px #8FB3E3
+}
+
+.navmenu:hover {
+}
+
+#brandName {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  padding: 3px;
+  margin: auto;
+  color: #F5F5F5;
+}
+.btn-primary{
+  background: #328CC1;
+  color: #1D2731;
+  border-color: #0B3C5D;
+}
