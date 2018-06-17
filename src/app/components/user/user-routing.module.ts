@@ -4,14 +4,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {MethodicsComponent} from './workspace/methodics/methodics.component';
 import {UserComponent} from './workspace/user.component';
 import {UsermainpageComponent} from './workspace/usermainpage/usermainpage.component';
-import {HttpClient} from '@angular/common/http';
 import {UserMethodicsService} from './services/usermethodics.service';
 import {StartMethodicsComponent} from './workspace/startmethodics/startmethodics.component';
 import {UserGuard} from './guards/user.guard';
-import {UserHolderService} from '../../services/userholder.service';
 import {ContactsComponent} from './workspace/contacts/contacts.component';
 import {DocumentationComponent} from './workspace/documentation/documentation.component';
 import {UserprofileComponent} from './workspace/userprofile/userprofile.component';
+import {UserprofileService} from '../../services/userprofile.service';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {path: '', component: UserComponent, children: [
@@ -26,12 +26,13 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
   ],
   exports: [
     RouterModule
   ],
   declarations: [UserprofileComponent, UserComponent, UsermainpageComponent, MethodicsComponent, StartMethodicsComponent, ContactsComponent, DocumentationComponent],
-  providers: [UserMethodicsService, UserGuard]
+  providers: [UserMethodicsService, UserGuard, UserprofileService]
 })
 export class UserRoutingModule { }

@@ -6,18 +6,19 @@ import {LoadingPictureController} from '../../../../services/loadingPictureContr
 import {Question} from '../../../../domain/methodics/questions';
 import {PassingTest} from '../../../../domain/methodics/passingTest';
 import {AnswerQuestion} from '../../../../domain/methodics/answerQuestion';
-import {StateSaverService} from '../../../../services/statesaver.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-startmethodics',
   templateUrl: './startmethodics.component.html',
   styleUrls: ['./startmethodics.component.css']
 })
-export class StartMethodicsComponent implements OnInit, OnDestroy {
+export class StartMethodicsComponent implements OnInit {
   methodicsStarting: MethodicsWithQuestions;
   answerValues: number[];
   errorMessage: string;
-  isEnd = false;
+  methodicsEnd = false;
 
   constructor(private router: Router,
               private currentRouterState: ActivatedRoute,
@@ -26,12 +27,7 @@ export class StartMethodicsComponent implements OnInit, OnDestroy {
      return Array.from({length: (end - start)}, (v, k) => k + start);
   }
   ngOnInit() {
-    const url = StateSaverService.saveUrlState('methodicsTab', this.router.url);
-    const methodics = StateSaverService.getObjectState('methodicsStart');
-    if (methodics != null) {
-       this.methodicsStarting = methodics;
-       this.answerValues = this.createRangeArray(methodics['leftValueBorder'], methodics['rightValueBorder'] + 1);
-    } else {
+     LoadingPictureController.stopLoadingPicture();
       const id: string = this.currentRouterState.snapshot.paramMap.get('id');
       console.log(id);
       LoadingPictureController.startLoadingPicture();
@@ -42,12 +38,6 @@ export class StartMethodicsComponent implements OnInit, OnDestroy {
           LoadingPictureController.stopLoadingPicture();
         }
       );
-    }
-  }
-  ngOnDestroy(): void {
-    if (!this.isEnd) {
-      StateSaverService.saveObjectState('methodicsStart', this.methodicsStarting);
-    }
   }
 
   selectValue(question: Question, value: number) {
@@ -55,7 +45,6 @@ export class StartMethodicsComponent implements OnInit, OnDestroy {
   }
   sendMethodics() {
     if (this.validateMethodics()) {
-
       const answers: AnswerQuestion[] = [];
       for (const answer of this.methodicsStarting.questions) {
          answers.push(
@@ -73,18 +62,15 @@ export class StartMethodicsComponent implements OnInit, OnDestroy {
       LoadingPictureController.startLoadingPicture();
       this.methodicsService.sendResultMethodics(passFact, x => this.errorMessage = x,
         () => {
+          this.methodicsEnd = true;
           this.errorMessage = null;
           LoadingPictureController.stopLoadingPicture();
-          this.navigateToListMethodics();
         });
     } else {
       this.errorMessage = 'Ошибка. Остались неотвеченные вопросы';
     }
   }
   navigateToListMethodics() {
-    this.isEnd = true;
-    StateSaverService.removeItem('methodicsStart');
-    StateSaverService.removeItem('methodicsTab');
     this.router.navigateByUrl('/user/workspace/methodics');
   }
   validateMethodics(): boolean {
@@ -94,5 +80,8 @@ export class StartMethodicsComponent implements OnInit, OnDestroy {
       }
     }
     return true;
+  }
+  openModal() {
+      $('#openModal').click();
   }
 }

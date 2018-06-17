@@ -3,7 +3,17 @@
     <h1 class="textapp">Добро пожаловать</h1>
     <form class="form">
       <input type="text" [(ngModel)]="credentials.login" placeholder="Логин" [ngModelOptions]="{standalone: true}">
-      <input type="password" [(ngModel)]="credentials.password" placeholder="Пароль" [ngModelOptions]="{standalone: true}">
+      <div *ngIf="hiddenPass; else seePass">
+        <input type="password" [(ngModel)]="credentials.password" placeholder="Пароль" [ngModelOptions]="{standalone: true}">
+        <span (click)="updatePasswordStatus()"><i class="fa fa-eye"></i> показать пароль</span>
+      </div>
+      <ng-template #seePass>
+        <div>
+          <input type="text" [(ngModel)]="credentials.password" placeholder="Пароль" [ngModelOptions]="{standalone: true}">
+          <span (click)="updatePasswordStatus()"><i class="fa fa-eye-slash"></i> скрыть пароль</span>
+        </div>
+      </ng-template>
+      <br/>
       <button type="submit" (click)="logIn()" id="login-button">Войти</button>
     </form>
     <div *ngIf="error" class="alert alert-danger" role="alert">

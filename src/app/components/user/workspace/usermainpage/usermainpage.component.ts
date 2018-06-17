@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {LoadingPictureController} from '../../../../services/loadingPictureController';
 
 @Component({
   selector: 'app-usermainpage',
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class UsermainpageComponent implements OnInit {
 
   constructor() { }
-
   ngOnInit() {
+    LoadingPictureController.stopLoadingPicture();
   }
 
 }

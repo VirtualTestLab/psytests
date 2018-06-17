@@ -25,4 +25,7 @@ export class UserMethodicsService {
       .pipe(catchError(errorCathcer('Ошибка сервера. Попробуйте отправить ещё раз'))).subscribe(responseCatcher());
   }
 
+  getPassedMethoducs(): Observable<any> {
+    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/description/passed', {headers : HeadersContainer.getTokenHeader()});
+  }
 }

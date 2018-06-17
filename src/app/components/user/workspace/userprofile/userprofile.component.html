@@ -13,49 +13,61 @@
               <div class="form-group row">
                 <label class="col-lg-3 col-form-label form-control-label">Пол</label>
                 <div class="col-lg-9">
-                  <select id="gender_select" class="form-control" size="0">
-                    <option value="Hawaii">Мужской</option>
-                    <option value="Alaska">Женский</option>
+                  <select (change)="onGenderChange($event.target.value)" id="gender_select" class="form-control" size="0">
+                    <option value="" disabled selected>Выберите пол</option>
+                    <option value="MALE" [selected]="userToSend.gender === 'MALE'">Мужской</option>
+                    <option value="FEMALE" [selected]="userToSend.gender === 'FEMALE'">Женский</option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-lg-3 col-form-label form-control-label">Возраст</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="number" min="0" max="120" value="">
+                  <input class="form-control" type="number" min="0" max="120" placeholder="введите возраст" [(ngModel)]="userToSend.age" [ngModelOptions]="{standalone: true}"/>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-lg-3 col-form-label form-control-label">Семейной положение</label>
+                <label class="col-lg-3 col-form-label form-control-label">Семейное положение</label>
                 <div class="col-lg-9">
-                  <select id="marital_select" class="form-control" size="0">
-                    <option value="Hawaii">В браке</option>
-                    <option value="Alaska">В разводе</option>
-                    <option value="Alaska">Вдовец</option>
-                    <option value="Alaska">Холост</option>
+                  <select *ngIf="userToSend.gender === 'MALE'; else female" (change)="onMeritalChange($event.target.value)" id="marital_male_select" class="form-control" size="0">
+                    <option value="" disabled selected>Выберите семейное положение</option>
+                    <option value="MARRIED" [selected]="userToSend.maritalStatus === 'MARRIED'">Женат</option>
+                    <option value="DIVORCED" [selected]="userToSend.maritalStatus === 'DIVORCED'">В разводе</option>
+                    <option value="WIDOWER" [selected]="userToSend.maritalStatus === 'WIDOWER'">Вдовец</option>
+                    <option value="NOT_MARRIED" [selected]="userToSend.maritalStatus === 'NOT_MARRIED'">Холост</option>
                   </select>
+                  <ng-template #female>
+                    <select (change)="onMeritalChange($event.target.value)" id="marital_female_select" class="form-control" size="0">
+                      <option value="" disabled selected>Выберите семейное положение</option>
+                      <option value="MARRIED" [selected]="userToSend.maritalStatus === 'MARRIED'">Замужем</option>
+                      <option value="DIVORCED" [selected]="userToSend.maritalStatus === 'DIVORCED'">В разводе</option>
+                      <option value="WIDOWER" [selected]="userToSend.maritalStatus === 'WIDOWER'">Вдова</option>
+                      <option value="NOT_MARRIED" [selected]="userToSend.maritalStatus === 'NOT_MARRIED'">Не замужем</option>
+                    </select>
+                  </ng-template>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-lg-3 col-form-label form-control-label">Место проживания</label>
                 <div class="col-lg-9">
-                  <select id="city_select" class="form-control" size="0">
-                    <option value="Hawaii">Город</option>
-                    <option value="Alaska">Деревня</option>
+                  <select (change)="onPlaseChange($event.target.value)"  id="city_select" class="form-control" size="0">
+                    <option value="" disabled selected>Место проживания</option>
+                    <option value="CITY" [selected]="userToSend.placeResidence === 'CITY'">Город</option>
+                    <option value="VILLAGE" [selected]="userToSend.placeResidence === 'VILLAGE'">Деревня</option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-lg-3 col-form-label form-control-label">Количиство детей</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="number" min="0" value="">
+                  <input class="form-control" type="number" min="0" value="" placeholder="введите количество детей" [(ngModel)]="userToSend.countChildren" [ngModelOptions]="{standalone: true}"/>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-lg-3 col-form-label form-control-label"></label>
                 <div class="col-lg-9">
-                  <input type="reset" class="btn btn-danger" value="Очистить">
-                  <input type="button" class="btn btn-primary" value="Сохранить изменения">
+                  <input type="reset" class="btn btn-danger" value="Очистить" (click)="reset()">
+                  <input type="button" class="btn btn-primary" value="Сохранить изменения" (click)="sendUserInfo()">
                 </div>
               </div>
             </form>

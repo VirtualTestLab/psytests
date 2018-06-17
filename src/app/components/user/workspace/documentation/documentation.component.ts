@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FileDescription} from './filedescription';
+import {LoadingPictureController} from '../../../../services/loadingPictureController';
 
 @Component({
   selector: 'app-documentation',
@@ -29,6 +30,7 @@ export class DocumentationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    LoadingPictureController.stopLoadingPicture();
   }
 
 }

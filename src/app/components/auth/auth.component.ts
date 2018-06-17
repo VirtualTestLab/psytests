@@ -17,6 +17,7 @@ export class AuthComponent implements OnInit {
      password : ''
   };
   error = false;
+  hiddenPass = true;
   constructor(private authService: AuthService,
               private routerService: RouteService) { }
   ngOnInit() {
@@ -35,4 +36,7 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  updatePasswordStatus() {
+     this.hiddenPass = !this.hiddenPass;
+  }
 }
