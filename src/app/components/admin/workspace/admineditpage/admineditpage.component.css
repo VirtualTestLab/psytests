@@ -1,6 +1,8 @@
 .center {
-
   margin: auto;
   align-content: center;
 
+}
+div{
+  font-family: 'Playfair Display', serif;
 }

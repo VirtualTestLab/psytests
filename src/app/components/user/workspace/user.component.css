@@ -46,7 +46,8 @@ section .section-title {
 
 
 
-.navmenu:hover {
+.btn-primary:hover {
+  background-color: #2e7aab;
 }
 
 #brandName {

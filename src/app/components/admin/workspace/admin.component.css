@@ -12,7 +12,8 @@
   box-shadow: 3px 0px 10px 0px #8FB3E3
 }
 
-.navmenu:hover {
+.btn-primary:hover {
+  background-color: #2e7aab;
 }
 
 #brandName {

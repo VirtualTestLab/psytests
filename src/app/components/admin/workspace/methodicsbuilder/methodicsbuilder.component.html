@@ -1,3 +1,4 @@
+<div>
 <h1 class="text-center textapp">Создание методики</h1>
 <div class="container">
  <div>
@@ -28,8 +29,10 @@
                  </div>
                  <div class="form-group row">
                    <label class="col-lg-3 col-form-label form-control-label">Левая и правая граница ответов</label>
-                   <span></span>
-                   <input type="range" min="1" max="100" />
+                   <div class="col-lg-9">
+                      <input class="form-control" type="number" placeholder="введите левую границу" [(ngModel)]="methodics.leftValueBorder" [ngModelOptions]="{standalone: true}"/>
+                      <input class="form-control" type="number"  placeholder="введите праую границу" [(ngModel)]="methodics.rightValueBorder" [ngModelOptions]="{standalone: true}"/>
+                   </div>
                  </div>
                </form>
              </div>
@@ -46,6 +49,7 @@
                    <label class="col-lg-1 col-form-label form-control-label text-center">{{i+1}}</label>
                    <div class="col-lg-9">
                       <input  class="form-control" [(ngModel)]="question.text" [ngModelOptions]="{standalone: true}">
+                     <hr class="my-4">
                    </div>
                    <div class="col-lg-1">
                      <label class="btn btn-sm btn-danger float-right" (click)="deleteQuestion(question)"><i class="fa fa-trash"></i></label>
@@ -69,7 +73,9 @@
                  <div class="form-group row" *ngFor="let key of methodics.methodicsKeyDtoList; let i = index">
                    <label class="col-lg-1 col-form-label form-control-label text-center">{{i+1}}</label>
                    <div class="col-lg-9">
-                     <input  class="form-control" [(ngModel)]="key.nameScale" [ngModelOptions]="{standalone: true}">
+                     <input  class="form-control" [(ngModel)]="key.nameScale" [ngModelOptions]="{standalone: true}" placeholder="имя ключа">
+                     <input  class="form-control" [(ngModel)]="key.stringQuestions" [ngModelOptions]="{standalone: true}" placeholder="номера вопросов через запятую">
+                     <hr class="my-4">
                    </div>
                    <div class="col-lg-1">
                      <label class="btn btn-sm btn-danger float-right" (click)="deleteKey(key)"><i class="fa fa-trash"></i></label>
@@ -85,10 +91,10 @@
            </div>
            <div class="form-group row float-right">
              <div class="col-lg-4">
-               <input type="reset" class="btn btn-secondary" value="Cancel">
+               <input type="reset" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" value="Отмена">
              </div>
              <div class="col-lg-3">
-               <input type="button" class="btn btn-primary" value="Save Changes">
+               <input type="button" class="btn btn-success" value="Создать методику" (click)="sendMethodics()">
              </div>
            </div>
          </div>
@@ -98,4 +104,44 @@
  </div>
 </div>
 
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title display-6" id="exampleModalLabel">Вы уверены, что хотите отменить создание методики?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body display-7">
+        Все данные будут утеряны.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="goBack()">Да</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<button id="openModal" type="button" data-toggle="modal" data-target="#closeMethodics" hidden class="btn btn-secondary float-right"></button>
+<div class="modal fade" id="closeMethodics" tabindex="-1" role="dialog" aria-labelledby="closeMethodicsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title display-6" id="closeMethodicsLabel">Завершение</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="goBack()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body display-7">
+        Методика создана
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="goBack()">Хорошо</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>>

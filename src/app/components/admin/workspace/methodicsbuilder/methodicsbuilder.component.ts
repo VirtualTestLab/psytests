@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FullMethodics, MethodicsKeyDto, QuestionDto} from '../../../../domain/methodics/fullMethodics';
-import {text} from '@angular/core/src/render3/instructions';
+import {Component, OnInit} from '@angular/core';
+import {FullMethodics} from '../../../../domain/methodics/fullMethodics';
+import {Location} from '@angular/common';
+import {AdminmethodicsService} from '../../services/adminmethodics.service';
+import {QuestionDto} from '../../../../domain/methodics/questiondto';
+import {MethodicsKeyDto} from '../../../../domain/methodics/methodicskeydto';
+
+declare var $: any;
 
 @Component({
   selector: 'app-methodicsbuilder',
@@ -11,7 +16,8 @@ export class MethodicsbuilderComponent implements OnInit {
 
   methodics: FullMethodics = new FullMethodics();
 
-  constructor() { }
+  constructor(private location: Location,
+              private methodicsService: AdminmethodicsService) { }
 
   ngOnInit() {
   }
@@ -48,5 +54,20 @@ export class MethodicsbuilderComponent implements OnInit {
 
   createKey() {
     this.methodics.methodicsKeyDtoList.push({ } as MethodicsKeyDto);
+  }
+
+  sendMethodics() {
+    for (const key of this.methodics.methodicsKeyDtoList) {
+      MethodicsKeyDto.fillArray(key);
+    }
+    this.methodicsService.createMethoics(this.methodics, () => { }, () => {
+      this.openModal();
+    });
+  }
+    openModal() {
+       $('#openModal').click();
+    }
+  goBack() {
+    this.location.back();
   }
 }

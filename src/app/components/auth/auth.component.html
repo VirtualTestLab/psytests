@@ -1,5 +1,10 @@
 <div class="wrapper">
+  <div class="logos">
+    <img id="grsulogo" src="../../assets/images/LogoGrGU.png" width="5%"/>
+    <img id="psylogo" src="../../assets/images/favicon.ico" width="5%"/>
+  </div>
   <div class="container">
+    <div>
     <h1 class="textapp">Добро пожаловать</h1>
     <form class="form">
       <input type="text" [(ngModel)]="credentials.login" placeholder="Логин" [ngModelOptions]="{standalone: true}">
@@ -18,6 +23,7 @@
     </form>
     <div *ngIf="error" class="alert alert-danger" role="alert">
       Неверный логин или пароль. Попробуйте ещё раз
+      </div>
     </div>
   </div>
 

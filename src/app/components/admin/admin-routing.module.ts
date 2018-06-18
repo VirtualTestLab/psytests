@@ -8,6 +8,7 @@ import {AdminGuard} from './guards/admin.guard';
 import {UsermonitoringComponent} from './workspace/usermonitoring/usermonitoring.component';
 import {MethodicscontrolComponent} from './workspace/methodicscontrol/methodicscontrol.component';
 import {MethodicsbuilderComponent} from './workspace/methodicsbuilder/methodicsbuilder.component';
+import {AdminmethodicsService} from './services/adminmethodics.service';
 
 const routes: Routes = [
   {path: '', component: AdminComponent, children: [
@@ -28,6 +29,6 @@ const routes: Routes = [
     RouterModule
   ],
   declarations: [AdminComponent, AdminEditPageComponent, UsermonitoringComponent, MethodicscontrolComponent, MethodicsbuilderComponent],
-  providers: [AdminGuard]
+  providers: [AdminGuard, AdminmethodicsService]
 })
 export class AdminRoutingModule { }

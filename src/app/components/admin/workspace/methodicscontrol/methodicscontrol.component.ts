@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DescriptionMethodics} from '../../../../domain/methodics/descriptionMethodics';
+import {AdminmethodicsService} from '../../services/adminmethodics.service';
 
 @Component({
   selector: 'app-methodicscontrol',
@@ -9,7 +10,7 @@ import {DescriptionMethodics} from '../../../../domain/methodics/descriptionMeth
 export class MethodicscontrolComponent implements OnInit {
 
   allMethodics: DescriptionMethodics[];
-  constructor() { }
+  constructor(private methodicsService: AdminmethodicsService) { }
 
   ngOnInit() {
     this.allMethodics = [

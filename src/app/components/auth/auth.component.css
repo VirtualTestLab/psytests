@@ -58,10 +58,10 @@ body :-ms-input-placeholder {
 .container {
   max-width: 600px;
   margin: 0 auto;
-  margin-top: -35px;
   padding: 80px 0;
   height: 400px;
   text-align: center;
+  margin-top: -7%;
 }
 .container h1 {
   font-size: 40px;
@@ -103,6 +103,7 @@ form input:focus {
   width: 300px;
   color: #3B3A36;
 }
+
 form button {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -233,4 +234,7 @@ form button:hover {
     -webkit-transform: translateY(-700px) rotate(600deg);
     transform: translateY(-700px) rotate(600deg);
   }
+}
+.logos{
+  margin-left: 2%;
 }

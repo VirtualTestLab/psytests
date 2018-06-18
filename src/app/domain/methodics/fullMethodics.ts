@@ -1,13 +1,5 @@
-export class QuestionDto {
-  number: number;
-  text: string;
-}
-
-
-export class MethodicsKeyDto {
-  nameScale: string;
-  numbersQuestions: number[];
-}
+import {MethodicsKeyDto} from './methodicskeydto';
+import {QuestionDto} from './questiondto';
 
 export class FullMethodics {
   id: number;
