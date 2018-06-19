@@ -5,7 +5,7 @@
     <span *ngFor="let methodics of allMethodics; let i = index"  class="list-group-item">
       <span style="margin-left: 20px">{{i+1}}. {{ methodics.name }}</span>
       <button class="btn btn-sm btn-danger float-right" (click)="deleteMethodics(methodics)"><i class="fa fa-trash"></i> </button>
-      <button class="btn btn-sm btn-danger float-right" data-toggle="modal" data-target="#exampleModal" (click)="selectMethodics(methodics)"><i class="fa fa-key"></i> </button>
+      <button class="btn btn-sm btn-warning float-right" data-toggle="modal" data-target="#exampleModal" (click)="selectMethodics(methodics)"><i class="fa fa-key"></i> </button>
     </span>
   </div>
 </div>

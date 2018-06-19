@@ -22,6 +22,7 @@ export class MethodicscontrolComponent implements OnInit {
   getAllUsers() {
     this.profileService.getAll().subscribe(x => {
         const usersResponse: UserCreds[] = x;
+        this.users = [];
         for (const user of usersResponse) {
           if (user.roleUser === 'ROLE_USER') {
             this.users.push(user);
@@ -52,11 +53,7 @@ export class MethodicscontrolComponent implements OnInit {
   }
 
   openMethodicsForUser(user: UserCreds) {
-    this.methodicsService.openMethodicsUser(user.id.toString(), this.openedMethodics.id.toString()).subscribe(
-      x => {
-        this.closeModal();
-      }
-    );
+    this.methodicsService.openMethodicsUser(user.id.toString(), this.openedMethodics.id.toString()).subscribe(() => this.closeModal());
   }
 
   closeModal() {
