@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DescriptionMethodics} from '../../../../domain/methodics/descriptionMethodics';
+import {LoadingPictureController} from '../../../../services/loadingPictureController';
 import {AdminmethodicsService} from '../../services/adminmethodics.service';
 
 @Component({
@@ -13,23 +14,18 @@ export class MethodicscontrolComponent implements OnInit {
   constructor(private methodicsService: AdminmethodicsService) { }
 
   ngOnInit() {
-    this.allMethodics = [
-      {
-        name : 'Логики репродуктивных решений'
-      },
-      {
-        name : 'Диагностика враждебности (по шкале Кука-Медлей)',
-      },
-      {
-        name : 'Методика оценки эмоционального интеллекта',
-      },
-      {
-        name : 'Методика определения уровня сексизма (женская)',
-      },
-      {
-        name : 'Методика определения уровня сексизма (мужская)',
-      }
-    ];
+    LoadingPictureController.stopLoadingPicture();
+    this.getAllMethodics();
+  }
+  getAllMethodics() {
+    LoadingPictureController.startLoadingPicture();
+    this.methodicsService.getAllMethodics().subscribe(x => {
+      this.allMethodics = x;
+      LoadingPictureController.stopLoadingPicture();
+    });
   }
 
+  deleteMethodics(methodics: DescriptionMethodics) {
+    this.methodicsService.deleteMethodicsById(methodics.id.toString()).subscribe(x => this.getAllMethodics());
+  }
 }

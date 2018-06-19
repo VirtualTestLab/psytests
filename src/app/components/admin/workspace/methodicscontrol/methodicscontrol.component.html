@@ -4,8 +4,8 @@
     <button routerLink='builder' class="btn btn-bg btn-primary m-1-auto float-right"><i class="fa fa-plus-circle"></i> Добавить методику</button>
     <span *ngFor="let methodics of allMethodics; let i = index"  class="list-group-item">
       <span style="margin-left: 20px">{{i+1}}. {{ methodics.name }}</span>
-      <button class="btn btn-sm btn-danger float-right"><i class="fa fa-trash"></i> </button>
-      <button class="btn btn-sm btn-warning float-right"><i class="fa fa-pencil-square-o"></i> </button>
+      <button class="btn btn-sm btn-danger float-right" (click)="deleteMethodics(methodics)"><i class="fa fa-trash"></i> </button>
     </span>
   </div>
 </div>
+

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserCreds} from '../../../../domain/users/usercreds';
+import {LoadingPictureController} from '../../../../services/loadingPictureController';
+import {ProfileService} from '../../../../services/profile.service';
 
 @Component({
   selector: 'app-usermonitoring',
@@ -9,42 +11,68 @@ import {UserCreds} from '../../../../domain/users/usercreds';
 export class UsermonitoringComponent implements OnInit {
 
   users: UserCreds[];
-
-  constructor() { }
+  newUser: UserCreds;
+  text = 'Добавление нового пользователя';
+  isNew = false;
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.users = [
-      {
-        id: 1,
-        login: 'testLabUser',
-        password: 'AS@32fasa@1!',
-        roleUser: 'Пользователь'
-      },
-      {
-        id: 2,
-        login: 'testLabUser1',
-        password: '123zxcAS!',
-        roleUser: 'Пользователь'
-      },
-      {
-        id: 3,
-        login: 'testLabUser2',
-        password: 'AS@32fasa@1!',
-        roleUser: 'Пользователь'
-      },
-      {
-        id: 4,
-        login: 'testLabUser3',
-        password: 'asjKLJ2)_&',
-        roleUser: 'Пользователь'
-      },
-      {
-        id: 5,
-        login: 'testLabAdmin',
-        password: '@#sd@jKhk',
-        roleUser: 'Администратор'
-      }
-    ];
+    this.getUsers();
   }
 
+  getUsers() {
+    LoadingPictureController.startLoadingPicture();
+    this.profileService.getAll().subscribe( x => {
+      LoadingPictureController.stopLoadingPicture();
+      this.users = x;
+    } );
+  }
+
+  createNewUser() {
+     this.isNew = true;
+    this.text = 'Добавление нового пользователя';
+     this.newUser = new UserCreds();
+     this.newUser.roleUser = 'ROLE_USER';
+     this.newUser.login = null;
+     this.newUser.password = null;
+  }
+
+  onChangeRole(value) {
+    this.newUser.roleUser = value;
+  }
+
+  saveNewUser() {
+    LoadingPictureController.startLoadingPicture();
+    if (this.isNew) {
+      this.profileService.createUserCreds(this.newUser, x => {
+      }).subscribe( x => {
+        LoadingPictureController.stopLoadingPicture();
+        this.getUsers();
+      });
+    } else {
+      this.profileService.updateUserCreds(this.newUser, x => {
+      }).subscribe(x => {
+        LoadingPictureController.stopLoadingPicture();
+        this.getUsers();
+      });
+    }
+    this.cancel();
+  }
+
+  removeUser(user: UserCreds) {
+    this.profileService.deleteUserCredsById(user.id.toString()).subscribe( x => { this.getUsers(); } );
+  }
+  cancel() {
+    this.newUser = null;
+  }
+
+  editCurrent(user: UserCreds) {
+    this.isNew = false;
+    this.text = 'Изменение пользователя';
+    this.newUser = new UserCreds();
+    this.newUser.password = user.password;
+    this.newUser.login = user.login;
+    this.newUser.id = user.id;
+    this.newUser.roleUser = user.roleUser;
+  }
 }

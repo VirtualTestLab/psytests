@@ -64,6 +64,7 @@ export class StartMethodicsComponent implements OnInit {
         () => {
           this.methodicsEnd = true;
           this.errorMessage = null;
+          this.openModal();
           LoadingPictureController.stopLoadingPicture();
         });
     } else {

@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import {PassingTest} from '../../../domain/methodics/passingTest';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ApiSetting} from '../../../constants/api.setting';
 import {HttpClient} from '@angular/common/http';
@@ -18,8 +17,19 @@ export class AdminmethodicsService {
   }
 
   public deleteMethodicsById(id: string): Observable<any> {
-    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/editor/delete/7' + id, {headers : HeadersContainer.getTokenHeader()});
+    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/editor/delete/' + id, {headers : HeadersContainer.getTokenHeader()});
   }
 
+  public getAllMethodics(): Observable<any> {
+    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/description/get', {headers : HeadersContainer.getTokenHeader()});
+  }
+
+  public getAllMethodicsPassedByUser(userId: string): Observable<any> {
+    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/description/passed/' + userId, {headers : HeadersContainer.getTokenHeader()});
+  }
+
+  public deletePassingFact(userId: string, methodicsId: string) {
+     return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/admin/manage/delete?userId=' + userId + '&methodicsId=' + methodicsId, {headers : HeadersContainer.getTokenHeader()});
+  }
 
 }

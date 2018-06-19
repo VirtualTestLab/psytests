@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FullMethodics} from '../../../../domain/methodics/fullMethodics';
 import {Location} from '@angular/common';
-import {AdminmethodicsService} from '../../services/adminmethodics.service';
 import {QuestionDto} from '../../../../domain/methodics/questiondto';
 import {MethodicsKeyDto} from '../../../../domain/methodics/methodicskeydto';
+import {AdminmethodicsService} from '../../services/adminmethodics.service';
 
 declare var $: any;
 

@@ -1,7 +1,7 @@
 <div id="add-user-container" class="container mb-4">
   <div class="row">
     <div class="col-12">
-      <button class="btn btn-bg btn-primary m-1-auto float-right" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Добавить нового пользователя</button>
+      <button (click)="createNewUser()" class="btn btn-bg btn-primary m-1-auto float-right"><i class="fa fa-plus-circle"></i> Добавить нового пользователя</button>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -20,26 +20,15 @@
             <td>{{user.password}}</td>
             <td>{{user.roleUser}}</td>
             <td class="text-right">
-              <button class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o"></i> </button>
-              <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
+              <button (click)="editCurrent(user)" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o"></i> </button>
+              <button (click)="removeUser(user)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
             </td>
           </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title display-6" id="exampleModalLabel">Добавление нового пользователя</h5>
-      </div>
-      <div class="modal-body display-7">
-        <div class="table-responsive">
+        <div *ngIf="newUser" class="table-responsive">
+          <h5 class="modal-title display-6" id="addLabel">{{text}}</h5>
           <table class="table table-striped">
             <thead>
             <tr>
@@ -50,22 +39,25 @@
             </thead>
             <tbody>
             <tr>
-              <td><input class="form-control" type="text"></td>
-              <td><input class="form-control" type="text"></td>
+              <td><input placeholder="логин" [(ngModel)]="newUser.login" class="form-control" type="text"/></td>
+              <td><input placeholder="пароль" [(ngModel)]="newUser.password" class="form-control" type="text"/></td>
               <td>
-                <select id="role_select" class="form-control" size="0">
-                <option value="Hawaii">Пользователь</option>
-                <option value="Alaska">Администратор</option>
-              </select></td>
+                <select (change)="onChangeRole($event.target.value)" class="form-control" size="0">
+                  <option value="ROLE_USER" [selected]="newUser.roleUser === 'ROLE_USER'">Пользователь</option>
+                  <option value="ROLE_ADMIN" [selected]="newUser.roleUser === 'ROLE_ADMIN'">Администратор</option>
+                </select>
+              </td>
             </tr>
             </tbody>
           </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
+          <div class="modal-footer">
+            <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
+            <button (click)="saveNewUser()" type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
-</div>
+

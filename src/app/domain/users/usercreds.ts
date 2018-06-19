@@ -1,6 +1,6 @@
 export class UserCreds {
 
-  id: number;
+  id?: number;
   login: string;
   password: string;
   roleUser: string;

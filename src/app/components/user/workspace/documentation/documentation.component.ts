@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FileDescription} from './filedescription';
+import {FileDescription} from '../../../../domain/info/filedescription';
 import {LoadingPictureController} from '../../../../services/loadingPictureController';
 
 @Component({

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>Список пользователей:</h3>
+    <table class="table table-inverse">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th class="text-center">Логин</th>
+        <th class="text-center">Открыть информацию</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td class="text-center">{{user.login}}</td>
+        <td class="text-center"><button class="btn btn-sm btn-danger" (click)="select(user)"><i class="fa fa-arrow-right"></i></button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="user" class="col-md-6">
+      <app-s [creds]="user"></app-s>
+  </div>
+</div>
+

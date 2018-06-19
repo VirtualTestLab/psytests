@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FileDescription} from '../../../user/workspace/documentation/filedescription';
+import {FileDescription} from '../../../../domain/info/filedescription';
 
 @Component({
   selector: 'app-admineditpage',
