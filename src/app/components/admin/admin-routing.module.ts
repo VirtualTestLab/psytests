@@ -10,7 +10,6 @@ import {FileService} from '../../services/info/file.service';
 import {ContactService} from '../../services/info/contact.service';
 import {ProfileService} from '../../services/profile.service';
 import {UserresultComponent} from './workspace/userresult/userresult.component';
-import {SComponent} from './workspace/userresult/s/s.component';
 import {AdminEditPageComponent} from './workspace/admineditpage/admineditpage.component';
 import {MethodicsbuilderComponent} from './workspace/methodicsbuilder/methodicsbuilder.component';
 import {AdminmethodicsService} from './services/adminmethodics.service';
@@ -34,7 +33,7 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  declarations: [SComponent, AdminComponent, AdminEditPageComponent, UsermonitoringComponent, MethodicscontrolComponent, MethodicsbuilderComponent, UserresultComponent],
+  declarations: [AdminComponent, AdminEditPageComponent, UsermonitoringComponent, MethodicscontrolComponent, MethodicsbuilderComponent, UserresultComponent],
   providers: [AdminGuard, AdminmethodicsService, FileService, ContactService, ProfileService]
 })
 export class AdminRoutingModule { }

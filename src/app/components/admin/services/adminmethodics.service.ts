@@ -32,4 +32,8 @@ export class AdminmethodicsService {
      return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/admin/manage/delete?userId=' + userId + '&methodicsId=' + methodicsId, {headers : HeadersContainer.getTokenHeader()});
   }
 
+  public getResultPassingFact(userId: string, methodicsId: string) {
+    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/result/user/methodicsresult?userId=' + userId + '&methodicsId=' + methodicsId, {headers : HeadersContainer.getTokenHeader()});
+  }
+
 }

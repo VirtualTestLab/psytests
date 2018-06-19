@@ -19,7 +19,44 @@
     </table>
   </div>
   <div *ngIf="user" class="col-md-6">
-      <app-s [creds]="user"></app-s>
+    <div class="jumbotron">
+      <p class="lead text-center">Методики пройденные пользователем: {{user.login}}</p>
+      <p *ngIf="message">{{message}}</p>
+      <table *ngIf="descriptionMethodics" class="table table-inverse">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th class="text-center">Название методики</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let methodics of descriptionMethodics; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td class="text-center">{{methodics.name}}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-danger" (click)="reopen(methodics)"><i class="fa fa-undo"></i></button>
+            <button class="btn btn-sm btn-danger" (click)="openDetail(methodics)"><i class="fa fa-bar-chart"></i></button></td>
+        </tr>
+        </tbody>
+      </table>
+      <hr class="my-4">
+      <table *ngIf="passingFact" class="table table-inverse">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th class="text-center">Имя ключа</th>
+          <th class="text-center">Значение ключа</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let scale of passingFact.scales; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td class="text-center">{{scale.scaleName}}</td>
+          <td class="text-center">{{scale.scaleValue}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
