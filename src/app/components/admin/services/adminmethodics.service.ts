@@ -35,5 +35,8 @@ export class AdminmethodicsService {
   public getResultPassingFact(userId: string, methodicsId: string) {
     return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/result/user/methodicsresult?userId=' + userId + '&methodicsId=' + methodicsId, {headers : HeadersContainer.getTokenHeader()});
   }
+  public openMethodicsUser(userId: string, methodicsId: string) {
+    return this.httpClient.get<any>(ApiSetting.API_ENDPOINT_URL + '/methodics/admin/manage/open?userId=' + userId + '&methodicsId=' + methodicsId, {headers : HeadersContainer.getTokenHeader()});
+  }
 
 }
